@@ -1,5 +1,6 @@
 package frc.robot.util;
 
+import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.config.SparkMaxConfig;
 import com.revrobotics.spark.config.ClosedLoopConfig.FeedbackSensor;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
@@ -38,6 +39,17 @@ public class Configs {
                 .outputRange(-1, 1)
                 .positionWrappingEnabled(true)
                 .positionWrappingInputRange(0, ModuleConstants.angleFactor);
+        }
+    }
+
+    public static class GrabberConfigs {
+        public static final SparkMaxConfig GRABBER_CONFIG = new SparkMaxConfig();
+
+        static {
+            GRABBER_CONFIG
+                .idleMode(IdleMode.kBrake)
+                .smartCurrentLimit(20)
+                .secondaryCurrentLimit(30);
         }
     }
 }

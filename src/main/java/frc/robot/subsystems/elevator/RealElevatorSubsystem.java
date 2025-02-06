@@ -1,51 +1,67 @@
 package frc.robot.subsystems.elevator;
 
+import com.revrobotics.spark.SparkMax;
+import com.revrobotics.spark.SparkMaxAlternateEncoder;
+import com.revrobotics.spark.SparkLowLevel.MotorType;
+
 import edu.wpi.first.units.measure.Distance;
 import edu.wpi.first.units.measure.LinearVelocity;
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Encoder;
 
 public class RealElevatorSubsystem implements ElevatorSubsystem {
+    private final SparkMax sparkMax;
+    private final SparkMax sparkMax2;
+
+    private final DigitalInput limitSwitch;
+    private final DigitalInput limitSwitch2;
+
+    private final Encoder encoder;
+
+    public RealElevatorSubsystem() {
+        sparkMax = new SparkMax(0, MotorType.kBrushless);
+        sparkMax2 = new SparkMax(1, MotorType.kBrushless);
+
+        limitSwitch = new DigitalInput(0);
+        limitSwitch2 = new DigitalInput(1);
+        encoder = new Encoder(2, 3);
+
+
+    }
     
 
     @Override
     public void setTargetPosition(double position) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setTargetPosition'");
     }
 
     @Override
     public void setTargetHeight(Distance height) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setTargetHeight'");
+
     }
 
     @Override
     public double getPosition() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getPosition'");
+        return encoder.getDistance();
     }
 
     @Override
     public Distance getHeight() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getHeight'");
+        return encoder.getDistance();
     }
 
     @Override
     public double getTargetPosition() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getTargetPosition'");
+        return encoder.getTargetPosition();
     }
 
     @Override
     public Distance getTargetHeight() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getTargetHeight'");
+        return encoder.getTargetHeight();
     }
 
     @Override
     public LinearVelocity getVelocity() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getVelocity'");
+        return encoder.getClass().getVelocity9
     }
     
 }

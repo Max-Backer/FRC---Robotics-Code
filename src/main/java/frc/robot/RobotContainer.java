@@ -11,8 +11,10 @@ import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.FieldConstants.PickupState;
 import frc.robot.commands.teleop.Swerve.SwerveDriveCommand;
 import frc.robot.commands.teleop.Swerve.SwerveXCommand;
+import frc.robot.subsystems.grabber.RealGrabberSubsystem;
 import frc.robot.subsystems.swerve.*;
 import frc.robot.util.Constants;
 import frc.robot.util.Constants.IOConstants;
@@ -21,6 +23,8 @@ import frc.robot.util.Faults.FaultManager;
 public class RobotContainer {
     private final CommandXboxController m_driverController = new CommandXboxController(IOConstants.DRIVER_PORT);
     private final CommandXboxController m_operatorController = new CommandXboxController(IOConstants.OPERATOR_PORT);
+
+    private final RealGrabberSubsystem grabberSubsystem = new RealGrabberSubsystem();
 
     PowerDistribution m_PDH = new PowerDistribution(Constants.Ports.CANID.PDH.getId(), ModuleType.kRev);
 
@@ -42,6 +46,7 @@ public class RobotContainer {
         default:
             m_swerveSubsystem = new SwerveSubsystem();
         }
+        
 
         configureBindings();
         configureCommands();
@@ -61,7 +66,6 @@ public class RobotContainer {
     private void configureBindings() {
 
         // When driver presses x, set wheels in x formation
-        m_driverController.x().onTrue(SwerveXCommand.xCommand(m_swerveSubsystem));
 
     }
 
